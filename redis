@@ -1,0 +1,16 @@
+# wget http://download.redis.io/releases/redis-5.0.5.tar.gz
+# tar xzf redis-5.0.5.tar.gz
+# cd redis-5.0.5
+# make
+# cp redis.conf ./src/redis-cli ./src/redis-check-dump ./src/redis-benchmark ./src/redis-check-aof  /opt/redis5.0/
+# vim /opt/redis5.0/redis.conf
+修改daemonize为yes，即默认以后台程序方式运行（还记得前面手动使用&号强制后台运行吗）。
+daemonize no
+
+redis启动的3中方式
+直接启动
+1 /opt/redis5.0/redis-server &
+指定配置文件启动
+2 /opt/redis5.0/redis-server /opt/redis5.0/redis.conf
+脚本设置开机自启动
+3 
