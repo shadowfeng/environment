@@ -5,7 +5,7 @@
 
 安装前的准备
 您必须将这些库 perl 5.6.1+, libpcre, libssl安装在您的电脑之中。 对于 Linux来说, 您需要确认使用 ldconfig 命令，让其在您的系统环境路径中能找到它们。
-# yum install pcre-devel openssl-devel gcc curl
+# yum install postgresql-devel pcre-devel openssl-devel gcc curl
 
 创建安装目录
 # mkdir  -p /opt/openresty
