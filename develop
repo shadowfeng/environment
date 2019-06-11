@@ -32,3 +32,73 @@
 # make install
 创建软连接
 # ln -s /opt/openresty/nginx/sbin/nginx /usr/sbin/nginx
+
+
+搭建mysql
+
+安装前的准备
+您必须将这些库 ncurses, bison, cmake 安装在您的电脑之中。 对于 Linux来说, 您需要确认使用 ldconfig 命令，让其在您的系统环境路径中能找到它们。
+# yum -y install ncurses   ncurses-devel bison bison-devel cmake
+创建安装目录
+# mkdir  -p /opt/mysql5.7
+
+创建运行用户
+# groupadd mysql
+# useradd -r -g mysql -s /bin/false mysql
+下载文件
+mysql-VERSION.tar.gz
+解压
+# tar zxvf mysql-VERSION.tar.gz
+进入源码包
+# cd mysql-VERSION
+指定配置
+# cmake -DCMAKE_INSTALL_PREFIX=/opt/mysql5.7 -DMYSQL_DATADIR=/opt/mysql5.7/data -DDOWNLOAD_BOOST=1 -DWITH_BOOST=./boost/boost_1_59_0/
+编译并安装
+# make && make install
+初始化数据(切换当前目录到/opt/mysql5.7)
+#cd /opt/mysql5.7
+创建数据目录 日志目录
+# mkdir  data log
+更改文件所有者和所属组都为mysql
+# chown mysql:mysql data log
+更改权限
+# chmod 750  data log
+初始化
+# bin/mysqld --initialize --user=mysql
+mysql的服务脚本放到系统服务中
+# cp ./support-files/mysql.server /etc/init.d/mysqld
+# chmod 755 /etc/init.d/mysqld
+编辑刚刚复制来的Mysql数据库脚本文件 /etc/init.d/mysqld，将大约46、47行的basedir与datadir参数分别修改为Mysql数据库程序保存目录和真实数据库文件内容。
+#启动数据库
+# /etc/init.d/mysqld start
+链接数据库
+# /opt/mysql5.7/bin/mysql -uroot -p  输入之前初始化创建的密码 
+连上数据库之后，现在还不能使用，必须重置密码
+# SET PASSWORD FOR 'root'@'localhost' = PASSWORD('123456');
+恭喜你，mysql安装完毕并运行了
+# ln -s /opt/mysql5.7/bin/mysql /usr/sbin/mysql
+
+贴出/etc/my.cnf 文件简单配置  你可以加入mysql参数来优化你的数据库
+[mysqld]
+datadir=/opt/mysql5.7/data
+socket=/opt/mysql5.7/log/mysql.sock
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+# Settings user and group are ignored when systemd is used.
+# If you need to run mysqld under a different user or group,
+# customize your systemd unit file for mariadb according to the
+# instructions in http://fedoraproject.org/wiki/Systemd
+explicit_defaults_for_timestamp=true
+
+[mysqld_safe]
+log-error=/opt/mysql5.7/log/mariadb.log
+pid-file=/opt/mysql5.7/mariadb.pid
+
+[client]
+socket=/opt/mysql5.7/log/mysql.sock
+#
+# include all files from the config directory
+#
+!includedir /etc/my.cnf.d
+
+
