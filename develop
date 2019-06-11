@@ -1,0 +1,34 @@
+搭建openresty
+
+在 Linux 上，通常需要使用 sudo 来获取 root 权限来完成安装。
+#sudo su
+
+安装前的准备
+您必须将这些库 perl 5.6.1+, libpcre, libssl安装在您的电脑之中。 对于 Linux来说, 您需要确认使用 ldconfig 命令，让其在您的系统环境路径中能找到它们。
+# yum install pcre-devel openssl-devel gcc curl
+
+创建安装目录
+# mkdir  -p /opt/openresty
+创建运行用户
+# groupadd www
+# useradd -r -g www www -s /sbin/nologin
+从下载页 http://openresty.org/cn/download.html 下载最新的 OpenResty® 源码包，并且像下面的示例一样将其解压:
+解压
+# tar -xzvf openresty-VERSION.tar.gz
+进源码包
+# cd openresty-VERSION/
+指定配置
+./configure --prefix=/opt/openresty \
+            --with-luajit \
+            --without-http_redis2_module \
+            --with-http_iconv_module \
+            --with-http_postgres_module
+            
+编译
+# make
+如果您的电脑支持多核 make 工作的特性, 您可以这样编译:
+# make -j2    //假设您是的机器是双核。
+安装
+# make install
+创建软连接
+# ln -s /opt/openresty/nginx/sbin/nginx /usr/sbin/nginx
