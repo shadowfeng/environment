@@ -170,4 +170,16 @@ socket=/opt/mysql5.7/log/mysql.sock
 # php -v
 至此 php 安装完毕
 
+配置nginx 解释以 .php 结尾的文件
+# cd /opt/openresty/nginx/conf
+# vim nginx.conf
+修改 运行用户为www      user www
+去掉location ~ \.php $块前面的注释
+修改  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name
+增加 index.php 
+# nginx -t 测试配置文件语法
+# nginx -s reload
+
+
+
 
