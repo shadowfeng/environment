@@ -1,0 +1,6 @@
+https://pecl.php.net/package/yaf
+# tar -zxvf yaf-3.0.3.tgz
+# cd yaf-3.0.3
+# phpize
+# ./configure --with-php-config=/opt/php7.1/bin/php-config
+# make && make install
