@@ -1,6 +1,30 @@
-https://pecl.php.net/package/yaf
+安装yaf 扩展
+下载地址：https://pecl.php.net/package/yaf
 # tar -zxvf yaf-3.0.3.tgz
 # cd yaf-3.0.3
 # phpize
 # ./configure --with-php-config=/opt/php7.1/bin/php-config
 # make && make install
+vim [php]/php.ini
+extension=yaf.so
+[yaf]
+yaf.environ=dev
+yaf.use_spl_autoload=1
+
+安装kafka的php扩展
+先安装rdkfka库文件
+# git clone https://github.com/edenhill/librdkafka.git
+# cd librdkafka/
+# ./configure 
+# make
+# make install
+
+# git clone https://github.com/arnaud-lb/php-rdkafka.git
+# cd php-rdkafka
+# phpize
+# ./configure --with-php-config=/opt/php7.1/bin/php-config
+# make all -j 5
+# make install
+
+vim [php]/php.ini
+extension=rdkafka.so
