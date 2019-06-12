@@ -1,0 +1,29 @@
+首先进入到 box 的下载目录，新建一个文件 metadata.json：
+
+{
+    "name": "centos/7",
+    "versions": [{
+        "version": "1809.01",
+        "providers": [{
+            "name": "virtualbox",
+            "url": "./virtualbox.box"
+        }]
+    }]
+}
+
+
+
+
+name添加的box名字
+version：版本号
+providers.name：虚拟主机类型
+providers.url：box地址
+
+metadata.json准备完成后，执行以下命令添加：
+
+$ vagrant box add metadata.json
+
+查看添加的 box 列表：
+
+$ vagrant box list
+centos/7          (virtualbox, 1809.01)
