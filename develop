@@ -123,6 +123,7 @@ socket=/opt/mysql5.7/log/mysql.sock
 # tar -zxvf php-7.1.29.tar.gz
 # cd php-7.1.29
 # ./configure --prefix=/opt/php7.1 \
+    --with-config-file-path=/opt/php7.1/etc \
     --enable-mysqlnd \
     --with-pdo-mysql \
     --with-pdo-mysql=mysqlnd \
