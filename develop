@@ -128,6 +128,12 @@ socket=/opt/mysql5.7/log/mysql.sock
     --with-pdo-mysql \
     --with-pdo-mysql=mysqlnd \
     --with-pdo-pgsql=/usr/bin/pg_config \
+    --with-gd \
+    --with-jpeg-dir \
+    --with-png-dir \
+    --with-freetype-dir \
+    --enable-gd-native-ttf \
+    --with-gettext \
     --enable-bcmath \
     --enable-fpm \
     --with-fpm-user=www \
