@@ -124,20 +124,26 @@ socket=/opt/mysql5.7/log/mysql.sock
 # cd php-7.1.29
 # ./configure --prefix=/opt/php7.1 \
     --with-config-file-path=/opt/php7.1/etc \
-    --enable-mysqlnd \
+    --with-fpm-user=www \
+    --with-fpm-group=www \
+    --with-libzip=/usr/lib/x86_64-linux-gnu \
+    --with-zlib \
+    --with-mcrypt \
+    --with-curl \
+    --with-pear \
+    --with-gettext \
+    --with-openssl \
     --with-pdo-mysql \
     --with-pdo-mysql=mysqlnd \
     --with-pdo-pgsql=/usr/bin/pg_config \
     --with-gd \
+    --with-freetype-dir=/usr/include/freetype2/freetype/ \
     --with-jpeg-dir \
     --with-png-dir \
-    --with-freetype-dir \
+    --enable-mysqlnd \
     --enable-gd-native-ttf \
-    --with-gettext \
     --enable-bcmath \
     --enable-fpm \
-    --with-fpm-user=www \
-    --with-fpm-group=www \
     --enable-mbstring \
     --enable-phpdbg \
     --enable-shmop \
@@ -146,14 +152,8 @@ socket=/opt/mysql5.7/log/mysql.sock
     --enable-sysvsem \
     --enable-sysvshm \
     --enable-zip \
-    --with-libzip=/usr/lib/x86_64-linux-gnu \
-    --with-zlib \
-    --with-mcrypt \
-    --with-gd  \
-    --with-curl \
-    --with-pear \
-    --with-openssl \
     --enable-pcntl
+
   编译
   # make
   安装
