@@ -122,8 +122,8 @@ socket=/opt/mysql5.7/log/mysql.sock
 解压
 # tar -zxvf php-7.1.29.tar.gz
 # cd php-7.1.29
-# ./configure --prefix=/opt/php7.1 \
-    --with-config-file-path=/opt/php7.1/etc \
+# ./configure --prefix=/opt/php7.1.29 \
+    --with-config-file-path=/opt/php7.1.29/etc \
     --with-fpm-user=www \
     --with-fpm-group=www \
     --with-libzip=/usr/lib/x86_64-linux-gnu \
@@ -133,6 +133,7 @@ socket=/opt/mysql5.7/log/mysql.sock
     --with-pear \
     --with-gettext \
     --with-openssl \
+    --with-mysqli \
     --with-pdo-mysql \
     --with-pdo-mysql=mysqlnd \
     --with-pdo-pgsql=/usr/bin/pg_config \
@@ -159,17 +160,17 @@ socket=/opt/mysql5.7/log/mysql.sock
   安装
   # make install
 复制 ini文件到安装目录
-# cp php.ini-development /opt/php7.1/etc/php.ini
+# cp php.ini-development /opt/php7.1.29/etc/php.ini
 复制 执行文件
-# // cp sapi/fpm/init.d.php-fpm /etc/init.d/php7.1-fpm
-# // chmod +x /etc/init.d/php7.1-fpm
-# cd /opt/php7.1/etc
+# // cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
+# // chmod +x /etc/init.d/php-fpm
+# cd /opt/php7.1.29/etc
 # mv php-fpm.conf.default php-fpm.conf
 # mv php-fpm.d/www.conf.default php-fpm.d/www.conf
 # 创建链接到二进制目录
-# ln -s /opt/php7.1/sbin/php-fpm /usr/sbin/php-fpm
-# ln -s /opt/php7.1/bin/php /usr/sbin/php
-# ln -s /opt/php7.1/bin/phpize /usr/sbin/phpize
+# ln -s /opt/php7.1.29/sbin/php-fpm /usr/sbin/php-fpm
+# ln -s /opt/php7.1.29/bin/php /usr/sbin/php
+# ln -s /opt/php7.1.29/bin/phpize /usr/sbin/phpize
 修改运行用户
 # vim php-fpm.d/www.conf
 去掉listen相关的注释
